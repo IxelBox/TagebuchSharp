@@ -1,0 +1,40 @@
+@page
+@model MainPageModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - tagebuchsharp</title>
+
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/Pavilion/pavilion.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/lib/pavilion/pavilion.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+    
+</head>
+<body>
+    <h1>@Model.Params</h1>
+    <partial name="_CookieConsentPartial" />
+    <div class="container body-content">
+        <hr />
+        <footer>
+            <p>&copy; 2018 - tagebuchsharp</p>
+        </footer>
+    </div>
+
+    <environment include="Development">
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+</body>
+</html>

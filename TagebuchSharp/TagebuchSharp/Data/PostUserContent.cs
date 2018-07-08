@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace tagebuchsharp.Data {
+namespace TagebuchSharp.Data {
     public class PostComment {
         [Key]
         public int PostUserContentId { get; set; }

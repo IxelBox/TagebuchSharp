@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace tagebuchsharp.Data {
+namespace TagebuchSharp.Data {
     public class ApplicationDbContext : IdentityDbContext {
         public ApplicationDbContext (DbContextOptions<ApplicationDbContext> options) : base (options) { }
 
@@ -21,7 +21,7 @@ namespace tagebuchsharp.Data {
             base.OnModelCreating (modelBuilder);
 
             modelBuilder.Entity<PostTag> ()
-                .HasKey (t => new { t.PostId, t.TagName });
+                .HasKey (t => new { t.PostId, t.TagId });
 
             modelBuilder.Entity<PostTag> ()
                 .HasOne (pt => pt.Post)
@@ -31,7 +31,7 @@ namespace tagebuchsharp.Data {
             modelBuilder.Entity<PostTag> ()
                 .HasOne (pt => pt.Tag)
                 .WithMany (t => t.PostTags)
-                .HasForeignKey (pt => pt.TagName);
+                .HasForeignKey (pt => pt.TagId);
 
             modelBuilder.Entity<Post> ()
                 .Property (b => b.Language)

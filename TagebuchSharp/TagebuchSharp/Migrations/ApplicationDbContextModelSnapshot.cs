@@ -3,7 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using tagebuchsharp.Data;
+using TagebuchSharp.Data;
 
 namespace tagebuchsharp.Migrations
 {
@@ -177,7 +177,7 @@ namespace tagebuchsharp.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("tagebuchsharp.Data.Attachment", b =>
+            modelBuilder.Entity("TagebuchSharp.Data.Attachment", b =>
                 {
                     b.Property<string>("FileName")
                         .ValueGeneratedOnAdd()
@@ -187,17 +187,16 @@ namespace tagebuchsharp.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<string>("TagName")
-                        .IsRequired();
+                    b.Property<int>("TagId");
 
                     b.HasKey("FileName");
 
-                    b.HasIndex("TagName");
+                    b.HasIndex("TagId");
 
                     b.ToTable("Attachments");
                 });
 
-            modelBuilder.Entity("tagebuchsharp.Data.Page", b =>
+            modelBuilder.Entity("TagebuchSharp.Data.Page", b =>
                 {
                     b.Property<int>("PageId")
                         .ValueGeneratedOnAdd();
@@ -205,13 +204,21 @@ namespace tagebuchsharp.Migrations
                     b.Property<string>("Content")
                         .IsRequired();
 
+                    b.Property<DateTime>("CreatedDateTime");
+
                     b.Property<string>("CustomMetaData");
+
+                    b.Property<string>("DefaultSlug")
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.Property<string>("Language")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(2)
                         .HasDefaultValue("de");
+
+                    b.Property<DateTime>("LastChangeDateTime");
 
                     b.Property<string>("PageType")
                         .IsRequired();
@@ -231,7 +238,7 @@ namespace tagebuchsharp.Migrations
                     b.HasDiscriminator<string>("PageType").HasValue("Page");
                 });
 
-            modelBuilder.Entity("tagebuchsharp.Data.PostComment", b =>
+            modelBuilder.Entity("TagebuchSharp.Data.PostComment", b =>
                 {
                     b.Property<int>("PostUserContentId")
                         .ValueGeneratedOnAdd();
@@ -262,43 +269,48 @@ namespace tagebuchsharp.Migrations
                     b.HasDiscriminator<string>("PostCommentType").HasValue("PostComment");
                 });
 
-            modelBuilder.Entity("tagebuchsharp.Data.PostTag", b =>
+            modelBuilder.Entity("TagebuchSharp.Data.PostTag", b =>
                 {
                     b.Property<int>("PostId");
 
-                    b.Property<string>("TagName");
+                    b.Property<int>("TagId");
 
-                    b.HasKey("PostId", "TagName");
+                    b.HasKey("PostId", "TagId");
 
-                    b.HasIndex("TagName");
+                    b.HasIndex("TagId");
 
                     b.ToTable("PostTag");
                 });
 
-            modelBuilder.Entity("tagebuchsharp.Data.Tag", b =>
+            modelBuilder.Entity("TagebuchSharp.Data.Tag", b =>
                 {
-                    b.Property<string>("Name")
+                    b.Property<int>("TagId")
                         .ValueGeneratedOnAdd();
 
-                    b.HasKey("Name");
+                    b.Property<string>("Name")
+                        .HasMaxLength(100);
+
+                    b.HasKey("TagId");
 
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("tagebuchsharp.Data.ContentPage", b =>
+            modelBuilder.Entity("TagebuchSharp.Data.ContentPage", b =>
                 {
-                    b.HasBaseType("tagebuchsharp.Data.Page");
+                    b.HasBaseType("TagebuchSharp.Data.Page");
 
                     b.Property<bool>("HasPosts");
+
+                    b.Property<bool>("IsInFooter");
 
                     b.ToTable("ContentPage");
 
                     b.HasDiscriminator().HasValue("ContentPage");
                 });
 
-            modelBuilder.Entity("tagebuchsharp.Data.Post", b =>
+            modelBuilder.Entity("TagebuchSharp.Data.Post", b =>
                 {
-                    b.HasBaseType("tagebuchsharp.Data.Page");
+                    b.HasBaseType("TagebuchSharp.Data.Page");
 
                     b.Property<string>("Preview")
                         .IsRequired()
@@ -309,13 +321,13 @@ namespace tagebuchsharp.Migrations
                     b.HasDiscriminator().HasValue("Post");
                 });
 
-            modelBuilder.Entity("tagebuchsharp.Data.PostCorrectionSuggestion", b =>
+            modelBuilder.Entity("TagebuchSharp.Data.PostCorrectionSuggestion", b =>
                 {
-                    b.HasBaseType("tagebuchsharp.Data.PostComment");
+                    b.HasBaseType("TagebuchSharp.Data.PostComment");
 
-                    b.Property<string>("Selector")
-                        .IsRequired()
-                        .HasMaxLength(30);
+                    b.Property<int>("SelectorEnd");
+
+                    b.Property<int>("SelectorStart");
 
                     b.ToTable("PostCorrectionSuggestion");
 
@@ -367,32 +379,32 @@ namespace tagebuchsharp.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("tagebuchsharp.Data.Attachment", b =>
+            modelBuilder.Entity("TagebuchSharp.Data.Attachment", b =>
                 {
-                    b.HasOne("tagebuchsharp.Data.Tag", "Tag")
+                    b.HasOne("TagebuchSharp.Data.Tag", "Tag")
                         .WithMany()
-                        .HasForeignKey("TagName")
+                        .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("tagebuchsharp.Data.PostComment", b =>
+            modelBuilder.Entity("TagebuchSharp.Data.PostComment", b =>
                 {
-                    b.HasOne("tagebuchsharp.Data.Post", "Post")
+                    b.HasOne("TagebuchSharp.Data.Post", "Post")
                         .WithMany("PostComments")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("tagebuchsharp.Data.PostTag", b =>
+            modelBuilder.Entity("TagebuchSharp.Data.PostTag", b =>
                 {
-                    b.HasOne("tagebuchsharp.Data.Post", "Post")
+                    b.HasOne("TagebuchSharp.Data.Post", "Post")
                         .WithMany("PostTags")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("tagebuchsharp.Data.Tag", "Tag")
+                    b.HasOne("TagebuchSharp.Data.Tag", "Tag")
                         .WithMany("PostTags")
-                        .HasForeignKey("TagName")
+                        .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

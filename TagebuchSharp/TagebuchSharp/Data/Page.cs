@@ -1,6 +1,7 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace tagebuchsharp.Data {
+namespace TagebuchSharp.Data {
     public abstract class Page {
         [Key]
         public int PageId { get; set; }
@@ -14,7 +15,17 @@ namespace tagebuchsharp.Data {
         public string Slug { get; set; }
 
         [Required]
+        [MaxLength (100)]
+        public string DefaultSlug { get; set; }
+
+        [Required]
         public string Content { get; set; }
+
+        [Required]
+        public DateTime CreatedDateTime { get; set; }
+
+        [Required]
+        public DateTime LastChangeDateTime { get; set; }
 
         [Required]
         [MaxLength (2)]

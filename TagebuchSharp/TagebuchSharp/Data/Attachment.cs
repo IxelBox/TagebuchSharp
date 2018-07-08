@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace tagebuchsharp.Data {
+namespace TagebuchSharp.Data {
     public class Attachment {
 
         [MaxLength (100)]
@@ -13,9 +13,9 @@ namespace tagebuchsharp.Data {
         public string FileName { get; set; }
 
         [Required]
-        public string TagName { get; set; }
+        public int TagId { get; set; }
 
-        [ForeignKey (nameof (TagName))]
+        [ForeignKey (nameof (TagId))]
         public Tag Tag { get; set; }
     }
 }

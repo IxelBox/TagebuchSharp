@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace tagebuchsharp.Migrations
 {
-    public partial class initial : Migration
+    public partial class inital : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,15 +50,19 @@ namespace tagebuchsharp.Migrations
                 name: "Pages",
                 columns: table => new
                 {
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
+                    LastChangeDateTime = table.Column<DateTime>(nullable: false),
                     PageId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(maxLength: 150, nullable: false),
                     Slug = table.Column<string>(maxLength: 100, nullable: false),
+                    DefaultSlug = table.Column<string>(maxLength: 100, nullable: false),
                     Content = table.Column<string>(nullable: false),
                     Language = table.Column<string>(maxLength: 2, nullable: false, defaultValue: "de"),
                     CustomMetaData = table.Column<string>(nullable: true),
                     PageType = table.Column<string>(nullable: false),
                     HasPosts = table.Column<bool>(nullable: true),
+                    IsInFooter = table.Column<bool>(nullable: true),
                     Preview = table.Column<string>(maxLength: 500, nullable: true)
                 },
                 constraints: table =>
@@ -70,11 +74,13 @@ namespace tagebuchsharp.Migrations
                 name: "Tags",
                 columns: table => new
                 {
-                    Name = table.Column<string>(nullable: false)
+                    TagId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tags", x => x.Name);
+                    table.PrimaryKey("PK_Tags", x => x.TagId);
                 });
 
             migrationBuilder.CreateTable(
@@ -194,7 +200,8 @@ namespace tagebuchsharp.Migrations
                     PostId = table.Column<int>(nullable: false),
                     Text = table.Column<string>(maxLength: 500, nullable: false),
                     PostCommentType = table.Column<string>(nullable: false),
-                    Selector = table.Column<string>(maxLength: 30, nullable: true)
+                    SelectorStart = table.Column<int>(nullable: true),
+                    SelectorEnd = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -213,16 +220,16 @@ namespace tagebuchsharp.Migrations
                 {
                     MimeType = table.Column<string>(maxLength: 100, nullable: false),
                     FileName = table.Column<string>(maxLength: 500, nullable: false),
-                    TagName = table.Column<string>(nullable: false)
+                    TagId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Attachments", x => x.FileName);
                     table.ForeignKey(
-                        name: "FK_Attachments_Tags_TagName",
-                        column: x => x.TagName,
+                        name: "FK_Attachments_Tags_TagId",
+                        column: x => x.TagId,
                         principalTable: "Tags",
-                        principalColumn: "Name",
+                        principalColumn: "TagId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -231,11 +238,11 @@ namespace tagebuchsharp.Migrations
                 columns: table => new
                 {
                     PostId = table.Column<int>(nullable: false),
-                    TagName = table.Column<string>(nullable: false)
+                    TagId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PostTag", x => new { x.PostId, x.TagName });
+                    table.PrimaryKey("PK_PostTag", x => new { x.PostId, x.TagId });
                     table.ForeignKey(
                         name: "FK_PostTag_Pages_PostId",
                         column: x => x.PostId,
@@ -243,10 +250,10 @@ namespace tagebuchsharp.Migrations
                         principalColumn: "PageId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PostTag_Tags_TagName",
-                        column: x => x.TagName,
+                        name: "FK_PostTag_Tags_TagId",
+                        column: x => x.TagId,
                         principalTable: "Tags",
-                        principalColumn: "Name",
+                        principalColumn: "TagId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -288,9 +295,9 @@ namespace tagebuchsharp.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Attachments_TagName",
+                name: "IX_Attachments_TagId",
                 table: "Attachments",
-                column: "TagName");
+                column: "TagId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PostComments_PostId",
@@ -298,9 +305,9 @@ namespace tagebuchsharp.Migrations
                 column: "PostId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PostTag_TagName",
+                name: "IX_PostTag_TagId",
                 table: "PostTag",
-                column: "TagName");
+                column: "TagId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
