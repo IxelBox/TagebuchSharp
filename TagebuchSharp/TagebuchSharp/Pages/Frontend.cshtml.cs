@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace TagebuchSharp.Pages {
-    public class BackendModel : PageModel {
+    public class FrontendModel : PageModel {
 
         IHostingEnvironment _environment;
 
-        public BackendModel (IHostingEnvironment environment) {
+        public FrontendModel (IHostingEnvironment environment) {
             _environment = environment;
         }
 

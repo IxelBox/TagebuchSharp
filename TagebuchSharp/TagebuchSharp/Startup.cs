@@ -41,7 +41,7 @@ namespace TagebuchSharp {
                 .SetCompatibilityVersion (CompatibilityVersion.Version_2_1)
                 .AddRazorPagesOptions (options => {
                     options.Conventions.AddPageRoute ("/Backend", "Backend/{*Params}");
-                    options.Conventions.AddPageRoute ("/MainPage", "{*Params}");
+                    options.Conventions.AddPageRoute ("/Frontend", "{*Params}");
                 });
 
         }
