@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+
+  ghost:
+    image: ghost:5-alpine
+    restart: always
+    ports:
+      - 8888:2368
+    volumes:
+      - ../../../ghostData:/var/lib/ghost/content
+    environment:
+      # see https://ghost.org/docs/config/#configuration-options
+      url: http://localhost:8888
+      # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
+      NODE_ENV: development
+
+  #db:
+  #  image: mariadb:10
+  #  restart: always
+  #  environment:
+  #    MARIADB_ROOT_PASSWORD: exampleExtrem
+  #    MARIADB_USER: ghostUser
+  #    MARIADB_PASSWORD: example
+  #    MARIADB_DATABASE: ghost

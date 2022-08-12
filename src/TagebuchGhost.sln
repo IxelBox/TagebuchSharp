@@ -1,0 +1,111 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagebuchGhost", "app\TagebuchGhost\TagebuchGhost.csproj", "{A8AB8906-D02B-414B-A02B-2A299A42CAE1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MessageBus", "MessageBus", "{AFE171E2-DC72-4E21-8794-AC556D1EB067}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBus.Abstractions", "lib\MessageBus\MessageBus.Abstractions\MessageBus.Abstractions.csproj", "{AAEE7650-5B5D-4FFD-BEC1-DE3C76AACB2D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBus", "lib\MessageBus\MessageBus\MessageBus.csproj", "{AD135A3D-361F-4379-8293-AD0FC9D7FBC8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messagebus.LamarRegistry", "lib\MessageBus\Messagebus.LamarRegistry\Messagebus.LamarRegistry.csproj", "{1FDDF9AA-DE63-4321-AAFB-B7DBA82602BA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBus.Tests", "lib\MessageBus\MessageBus.Tests\MessageBus.Tests.csproj", "{F28422CF-2B20-495F-8C57-640A8531C2A4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{D6F4AE37-7F31-430B-BB6A-E1EC1206781F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagebuchSharp.Abstractions", "lib\Core\TagebuchSharp.Abstractions\TagebuchSharp.Abstractions.csproj", "{913DA275-FE5C-461D-AF3F-836B942FE464}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HttpClient", "HttpClient", "{80E0CE51-563A-438C-AF48-EAE6CAC6D039}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagebuchGhost.HttpClientProxy", "lib\Core\TagebuchGhost.HttpClientProxy\TagebuchGhost.HttpClientProxy.csproj", "{94B2E35B-210F-4168-BB6C-95820B5F55E2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagebuchGhost.HttpClientProxy.Abstractions", "lib\Core\TagebuchGhost.HttpClientProxy.Abstractions\TagebuchGhost.HttpClientProxy.Abstractions.csproj", "{D82648E6-F407-4610-A8EA-69EDCBB65C50}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagebuchSharp", "lib\Core\TagebuchSharp\TagebuchSharp.csproj", "{A74BF30C-B0CC-4392-9427-B9851C9A62BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "IntegrationTests", "{9F40C813-5CD6-4165-AB50-DBD2E04EE545}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagebuchGhost.IntegrationTests", "tests\TagebuchGhost.IntegrationTests\TagebuchGhost.IntegrationTests.csproj", "{09B11F9E-342C-4B4D-B087-E96336F7670F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{80C93347-B902-42EF-BB10-3AC7F1412720}"
+	ProjectSection(SolutionItems) = preProject
+		..\docker-dev\docker-compose.yml = ..\docker-dev\docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagebuchSharp.LamarRegistry", "lib\Core\TagebuchSharp.LamarRegistry\TagebuchSharp.LamarRegistry.csproj", "{F6AE5DCB-F9B3-459E-A7BB-37AEE3925CE1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8AB8906-D02B-414B-A02B-2A299A42CAE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8AB8906-D02B-414B-A02B-2A299A42CAE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8AB8906-D02B-414B-A02B-2A299A42CAE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8AB8906-D02B-414B-A02B-2A299A42CAE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAEE7650-5B5D-4FFD-BEC1-DE3C76AACB2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAEE7650-5B5D-4FFD-BEC1-DE3C76AACB2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAEE7650-5B5D-4FFD-BEC1-DE3C76AACB2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAEE7650-5B5D-4FFD-BEC1-DE3C76AACB2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD135A3D-361F-4379-8293-AD0FC9D7FBC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD135A3D-361F-4379-8293-AD0FC9D7FBC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD135A3D-361F-4379-8293-AD0FC9D7FBC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD135A3D-361F-4379-8293-AD0FC9D7FBC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FDDF9AA-DE63-4321-AAFB-B7DBA82602BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FDDF9AA-DE63-4321-AAFB-B7DBA82602BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FDDF9AA-DE63-4321-AAFB-B7DBA82602BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FDDF9AA-DE63-4321-AAFB-B7DBA82602BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F28422CF-2B20-495F-8C57-640A8531C2A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F28422CF-2B20-495F-8C57-640A8531C2A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F28422CF-2B20-495F-8C57-640A8531C2A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F28422CF-2B20-495F-8C57-640A8531C2A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{913DA275-FE5C-461D-AF3F-836B942FE464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{913DA275-FE5C-461D-AF3F-836B942FE464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{913DA275-FE5C-461D-AF3F-836B942FE464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{913DA275-FE5C-461D-AF3F-836B942FE464}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94B2E35B-210F-4168-BB6C-95820B5F55E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94B2E35B-210F-4168-BB6C-95820B5F55E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94B2E35B-210F-4168-BB6C-95820B5F55E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94B2E35B-210F-4168-BB6C-95820B5F55E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D82648E6-F407-4610-A8EA-69EDCBB65C50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D82648E6-F407-4610-A8EA-69EDCBB65C50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D82648E6-F407-4610-A8EA-69EDCBB65C50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D82648E6-F407-4610-A8EA-69EDCBB65C50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A74BF30C-B0CC-4392-9427-B9851C9A62BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A74BF30C-B0CC-4392-9427-B9851C9A62BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A74BF30C-B0CC-4392-9427-B9851C9A62BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A74BF30C-B0CC-4392-9427-B9851C9A62BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09B11F9E-342C-4B4D-B087-E96336F7670F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09B11F9E-342C-4B4D-B087-E96336F7670F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09B11F9E-342C-4B4D-B087-E96336F7670F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09B11F9E-342C-4B4D-B087-E96336F7670F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6AE5DCB-F9B3-459E-A7BB-37AEE3925CE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6AE5DCB-F9B3-459E-A7BB-37AEE3925CE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6AE5DCB-F9B3-459E-A7BB-37AEE3925CE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6AE5DCB-F9B3-459E-A7BB-37AEE3925CE1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AAEE7650-5B5D-4FFD-BEC1-DE3C76AACB2D} = {AFE171E2-DC72-4E21-8794-AC556D1EB067}
+		{AD135A3D-361F-4379-8293-AD0FC9D7FBC8} = {AFE171E2-DC72-4E21-8794-AC556D1EB067}
+		{1FDDF9AA-DE63-4321-AAFB-B7DBA82602BA} = {AFE171E2-DC72-4E21-8794-AC556D1EB067}
+		{F28422CF-2B20-495F-8C57-640A8531C2A4} = {AFE171E2-DC72-4E21-8794-AC556D1EB067}
+		{913DA275-FE5C-461D-AF3F-836B942FE464} = {D6F4AE37-7F31-430B-BB6A-E1EC1206781F}
+		{80E0CE51-563A-438C-AF48-EAE6CAC6D039} = {D6F4AE37-7F31-430B-BB6A-E1EC1206781F}
+		{94B2E35B-210F-4168-BB6C-95820B5F55E2} = {80E0CE51-563A-438C-AF48-EAE6CAC6D039}
+		{D82648E6-F407-4610-A8EA-69EDCBB65C50} = {80E0CE51-563A-438C-AF48-EAE6CAC6D039}
+		{A74BF30C-B0CC-4392-9427-B9851C9A62BA} = {D6F4AE37-7F31-430B-BB6A-E1EC1206781F}
+		{09B11F9E-342C-4B4D-B087-E96336F7670F} = {9F40C813-5CD6-4165-AB50-DBD2E04EE545}
+		{F6AE5DCB-F9B3-459E-A7BB-37AEE3925CE1} = {D6F4AE37-7F31-430B-BB6A-E1EC1206781F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0DA49743-F541-4F91-A100-C3FC1E476CAE}
+	EndGlobalSection
+EndGlobal
