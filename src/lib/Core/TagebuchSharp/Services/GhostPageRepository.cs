@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using TagebuchGhost.HttpClientProxy;
 using TagebuchSharp.GhostData;
+using TagebuchSharp.GhostData.Data;
 using TagebuchSharp.Messages;
 
 namespace TagebuchSharp.Services;
@@ -43,17 +44,6 @@ public class GhostPageRepository : IPageRepository
         var p = (await _httpClient.GetJsonAsync<PageRoot>($"pages/slug/{arg.Slug}/")).Data?.Pages?.SingleOrDefault();
         if (p is null) throw new InvalidOperationException($"Page with slug: {arg.Slug}, don't exists");
 
-        return new GetPageDataResponse(new PageItem(
-            p.Slug,
-            p.Title,
-            p.Html,
-            p.MetaTitle,
-            p.MetaDescription,
-            p.OgTitle,
-            p.OgDescription,
-            p.TwitterTitle,
-            p.TwitterDescription,
-            _urlRenamer.FixUrl(p.CanonicalUrl)
-         ));
+        return new GetPageDataResponse(p.CreatePageItem(_urlRenamer));
     }
 }

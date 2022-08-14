@@ -1,4 +1,6 @@
 ﻿using System.Text.Json.Serialization;
+using TagebuchSharp.Messages;
+using TagebuchSharp.Services;
 
 namespace TagebuchSharp.GhostData.Data;
 
@@ -125,3 +127,23 @@ public record Error(
 );
 
 
+
+public static class ExtensionMethodes
+{
+    public static PageItem CreatePageItem(this PostOrPage p, IUrlRenamer urlRenamer) => new PageItem(
+            p.Slug,
+            p.Title,
+            p.Excerpt,
+            p.Html,
+            p.MetaTitle,
+            p.MetaDescription,
+            p.OgTitle,
+            p.OgDescription,
+            p.TwitterTitle,
+            p.TwitterDescription,
+            urlRenamer.FixUrl(p.CanonicalUrl),
+            p.Tags?.Select(t=> new TagItem(t.Id, t.Name, t.Slug, t.Description)).ToArray() ?? new TagItem[0],
+            p.PublishedAt,
+            p.UpdatedAt
+         );
+}

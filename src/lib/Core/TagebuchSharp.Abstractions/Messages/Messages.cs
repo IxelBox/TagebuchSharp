@@ -28,12 +28,14 @@ public record ShortPage(
     DateTime UpdatedAt,
     DateTime PublishedAt,
     string Excerpt,
+    string? Html,
     TagItem[] Tags
 );
 
 public record PageItem(
     string Slug,
     string Title,
+    string Excerpt,
     string Html,
     string MetaTitle,
     string MetaDescription,
@@ -41,7 +43,10 @@ public record PageItem(
     string OgDescription,
     string TwitterTitle,
     string TwitterDescription,
-    string CanonicalUrl
+    string CanonicalUrl,
+    TagItem[] Tags,
+    DateTime PublishedAt,
+    DateTime UpdatedAt
 //string CustomExcerpt,
 );
 
@@ -51,8 +56,6 @@ public record GetPageDataResponse(PageItem Page);
 public record GetPostDataRequest(string Slug);
 public record GetPostDataResponse(PageItem Page);
 
-public record GetAllPostsRequest(int PageNumber, int ItemCount);
-public record GetAllPostsResponse(PageItem[] posts);
-
-
+public record GetAllPostsRequest(int PageNumber, int ItemCount, bool WithContent);
+public record GetAllPostsResponse(ShortPage[] Posts, int TotalPages, int CurrentPage);
 
